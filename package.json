@@ -1,0 +1,46 @@
+{
+  "name": "npm-babel-setup",
+  "version": "1.0.0",
+  "description": "Setup to compile ES6. Uses an NPM script to run Babel-CLI + plugins",
+  "main": "app.js",
+  "scripts": {
+    "babel": "babel dev-javascript --watch --out-file compiled-javascript/app.js --source-maps inline --plugins transform-runtime",
+    "babel-production": "BABEL_ENV=production babel dev-javascript --out-file compiled-javascript/app.min.js --plugins transform-runtime"
+  },
+  "author": "Chris Snowden",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-minify": "^0.4.3",
+    "babel-runtime": "^6.26.0"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": [
+              "last 5 versions",
+              "not ie <= 8"
+            ]
+          }
+        }
+      ]
+    ],
+    "env": {
+      "production": {
+        "presets": [
+          "minify"
+        ]
+      }
+    },
+    "plugins": [
+      "transform-object-rest-spread"
+    ]
+  }
+}
